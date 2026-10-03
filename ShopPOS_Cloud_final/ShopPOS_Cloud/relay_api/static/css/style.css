@@ -1,0 +1,122 @@
+/* ShopPOS Cloud - design tokens and the handful of rules Tailwind utility
+   classes do not cover (themes, fonts, chart sizing, scrollbars, drawer
+   motion). Everything else is written as Tailwind utility classes
+   directly in the templates. */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --green: #0E7C5A;
+  --green-dim: #0B6349;
+  --gold: #D4A13D;
+  --coral: #E2583F;
+}
+
+/* Midnight (default): confident dark surface, market-green accent */
+:root, [data-theme="midnight"] {
+  --bg: #0F131A;
+  --bg-alt: #151B24;
+  --card: #1A212C;
+  --border: #2A3340;
+  --text: #EDEFF2;
+  --text-muted: #8D98A6;
+  --accent: #19A876;
+  --accent-ink: #06231A;
+}
+
+/* Daylight: warm paper surface for bright shop counters */
+[data-theme="daylight"] {
+  --bg: #FAF8F3;
+  --bg-alt: #FFFFFF;
+  --card: #FFFFFF;
+  --border: #E6E1D6;
+  --text: #171A1E;
+  --text-muted: #6B7076;
+  --accent: #0E7C5A;
+  --accent-ink: #FFFFFF;
+}
+
+/* Ocean: cool, calm dark variant */
+[data-theme="ocean"] {
+  --bg: #081A24;
+  --bg-alt: #0C2530;
+  --card: #10303C;
+  --border: #1E4150;
+  --text: #E6F2F4;
+  --text-muted: #7EA3AC;
+  --accent: #2FB3A6;
+  --accent-ink: #052521;
+}
+
+/* Sunset: warm end-of-day variant */
+[data-theme="sunset"] {
+  --bg: #1C1410;
+  --bg-alt: #261A14;
+  --card: #30211A;
+  --border: #46302D;
+  --text: #FAEEE4;
+  --text-muted: #BC9A83;
+  --accent: #D4A13D;
+  --accent-ink: #26190A;
+}
+
+/* Forest: green-forward, doubles down on the brand mark */
+[data-theme="forest"] {
+  --bg: #0D1813;
+  --bg-alt: #13231A;
+  --card: #192E22;
+  --border: #284736;
+  --text: #E7F3EB;
+  --text-muted: #85AC96;
+  --accent: #33C281;
+  --accent-ink: #072017;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-tap-highlight-color: transparent; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+.font-display { font-family: 'Sora', ui-sans-serif, system-ui, sans-serif; }
+
+/* Safe-area padding so the installed PWA doesn't sit under a phone's
+   notch/home-indicator. Zero on desktop since the env() vars resolve to 0. */
+.safe-top    { padding-top: env(safe-area-inset-top, 0px); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+/* Thin, theme-aware scrollbars for horizontally-scrolling tables */
+.scroll-thin::-webkit-scrollbar { height: 6px; width: 6px; }
+.scroll-thin::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
+.scroll-thin { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+
+/* Fade hint on the trailing edge of a horizontally-scrollable table, so a
+   phone user notices there is more to scroll before they've touched it */
+.scroll-fade {
+  mask-image: linear-gradient(to right, black calc(100% - 24px), transparent);
+}
+
+canvas.chart-canvas { max-height: 220px; }
+
+/* Mobile nav drawer */
+#nav-backdrop {
+  transition: opacity .2s ease;
+}
+#nav-drawer {
+  transition: transform .22s ease;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+input[type="date"] { color-scheme: light; }
+[data-theme="midnight"] input[type="date"],
+[data-theme="ocean"] input[type="date"],
+[data-theme="sunset"] input[type="date"],
+[data-theme="forest"] input[type="date"] { color-scheme: dark; }

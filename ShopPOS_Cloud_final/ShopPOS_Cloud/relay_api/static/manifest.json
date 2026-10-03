@@ -1,0 +1,19 @@
+{
+  "name": "ShopPOS Cloud",
+  "short_name": "ShopPOS",
+  "description": "Check your shop's sales, inventory and reports from anywhere.",
+  "start_url": "/dashboard",
+  "id": "/dashboard",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "background_color": "#0F131A",
+  "theme_color": "#0E7C5A",
+  "orientation": "any",
+  "categories": ["business", "finance", "productivity"],
+  "icons": [
+    { "src": "/static/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/static/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/static/icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
